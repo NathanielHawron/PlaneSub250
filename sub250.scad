@@ -88,32 +88,40 @@ module rib_LED(size, offset){
         }
     }
 }
-module rib_internal(size, offset){
+module rib_internal(width, size, offset){
     difference(){
-        ribBase(5);
+        ribBase(width);
         translate(offset){
+            rotate([0,90,0]){
+                translate([0,size[1]/2,0]){
+                    cylinder(100,size[2]/2,size[2]/2,true);
+                }
+                translate([0,-size[1]/2,0]){
+                    cylinder(100,size[2]/2,size[2]/2,true);
+                }
+            }
             cube(size,true);
         }
     }
 }
-module rib_nacelle(size, wireOffset, length, diameter, offset){
+module rib_nacelle(size, wireOffset, length, diameter, offset, holeSide, gap){
     difference(){
         union(){
-            ribBase(diameter+2);
+            rib_internal(diameter+2,size,wireOffset);
             rotate([90,0,0]){
                 translate(offset){
-                    cylinder(length+1,diameter/2+1,diameter/2+1,true);
+                    cylinder(length+1+gap,diameter/2+1,diameter/2+1,true);
                 }
             }
         }
-        translate(wireOffset){
-            cube(size,true);
-        }
         rotate([90,0,0]){
             translate(offset){
-                cylinder(length,diameter/2,diameter/2,true);
+                cylinder(length+gap,diameter/2,diameter/2,true);
+                translate([-holeSide*diameter/2,0,0]){
+                    cube([diameter,diameter-1,length],true);
+                }
             }
-            translate(offset+[0,0,-length/2]){
+            translate(offset+[0,0,-(length+gap)/2]){
                 cylinder(5,1.5,1.5,true);
             }
         }
@@ -137,13 +145,14 @@ module ribs(side){
     }
     translate([farthest*0.5+closest*0.5,oy,oz]){
         rib_nacelle(
-            [100,14,8],[0,-46,3.25],
-            motor_length+1,motor_diameter,
-            [0,2,9]
+            [100,12,8],[0,-46,3.25],
+            motor_length+2,motor_diameter,
+            [0,2,5],
+            side,8
         );
     }
     translate([farthest*0.25+closest*0.75,oy,oz]){
-        rib_internal([100,14,8],[0,-46,3.25]);
+        rib_internal(5,[100,12,8],[0,-46,3.25]);
     }
 }
 
@@ -174,4 +183,9 @@ module render(){
         }
     }*/
 }
-render();
+////render();
+        rib_servo(
+            5,wing_chord*0.725,
+            [16.77,8.84,100],[43,3.25,0],
+            5,[15,1.5,0]
+        );
