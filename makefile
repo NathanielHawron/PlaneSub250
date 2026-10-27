@@ -1,16 +1,16 @@
-FOIL = NACA3410
+FOIL = NACA1403
 
 RE = 500000
 M = 0.08
 N = 6
-A = -15 25 0.5
+A = -3 3 0.5
 
 OPTIONS = $(RE) $(M) $(N) $(A)
 POLARPATH = ./polar/N$(N)/RE$(RE)
 
 xfoil:
 	mkdir $(POLARPATH) -p
-	-rm $(POLARPATH)/$(FOIL)_polar.txt
+#	-rm $(POLARPATH)/$(FOIL)_polar.txt
 	node ./xfoil.js $(FOIL) $(OPTIONS)
 	-rm :00.bl
 

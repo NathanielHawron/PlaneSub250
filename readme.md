@@ -16,6 +16,9 @@ I compared NACA 2 to 5 series foils at 15% thickness, to see the difference in p
 
 Overall, I think NACA 3410 is a good tradeoff, but if more space is required, it could bump up to 3415.
 
+For the tail, I need a thin, neutral foil for the vertical stabilizer and rudder (if I end up using one).
+
+
 Airfoils from:
 https://m-selig.ae.illinois.edu/ads/coord_database.html
 

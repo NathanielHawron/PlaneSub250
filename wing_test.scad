@@ -1,5 +1,5 @@
-include <scad/NACA3415.scad>
+include <scad/NACA3410.scad>
 
 linear_extrude(height=100){
-    polygon(points*100);
+    polygon(airfoil_profile*100);
 }

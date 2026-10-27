@@ -4,7 +4,7 @@ let datToScad = (ipath, opath)=>{
     const content = fs.readFileSync(ipath, 'utf8');
     const lines = content.split(/\r?\n/);
 
-    let res = "points = [";
+    let res = "airfoil_profile = [";
 
 
     let firstLine = true;

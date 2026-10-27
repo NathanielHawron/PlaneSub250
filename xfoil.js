@@ -4,9 +4,9 @@ let foil = "";
 let re = "40000";
 let mach = "0.08";
 let N = "2";
-let aMin = "-15";
-let aMax = "15";
-let aStep = "1";
+let aMin = "-20";
+let aMax = "20";
+let aStep = "0.5";
 
 const args = process.argv;
 console.log(args);
@@ -49,14 +49,14 @@ const commands = [
     "G",
     "",
     // "LOAD ./dat/"+foil+".dat",
-    "NACA 3410",
+    "NACA 1403",
     "GDES",
     "UNIT",
     "",
     "PANE",
     "PPAR",
-    "N 250",
-    "T 0.1",
+    "N 500",
+    "T 0.05",
     "",
     "",
     "OPER",
