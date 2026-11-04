@@ -5,7 +5,7 @@ $fn = 64;
 
 spar_diameter = 6;
 subspar_diameter = 2.8;
-wing_length = 225;
+wing_length = 280;
 wing_chord = 90;
 wing_twist = 0;
 wing_skin = 0.1;
@@ -62,24 +62,24 @@ module ribs(side){
     farthest = side*wing_length+closest;
     oy = 25;
     oz = -2.5;
-    dt = 1/6;
+    dt = 1/7;
     translate([farthest-side*1.5,oy,oz]){
         rib_LED(4.75+clearance,[0,-15,1.5]);
     }
-    translate([farthest*(5*dt)+closest*(dt),oy,oz]){
+    translate([farthest*(6*dt)+closest*(dt),oy,oz]){
         rib_truncate(
             5,wing_chord*0.725,
             5,[15,1.5,0]
         );
     }
-    translate([farthest*(4*dt)+closest*(2*dt),oy,oz]){
+    translate([farthest*(5*dt)+closest*(2*dt),oy,oz]){
         rib_servo(
             4,wing_chord*0.725,
             [16.77,8.84,100],[43,2.5,0],
             5,[15,1.5,0]
         );
     }
-    translate([farthest*(3*dt)+closest*(3*dt),oy,oz]){
+    translate([farthest*(4*dt)+closest*(3*dt),oy,oz]){
         rib_nacelle(
             7,
             [100,10,6],[0,-50,2],
@@ -89,10 +89,20 @@ module ribs(side){
             -5,0
         );
     }
-    translate([farthest*(2*dt)+closest*(4*dt),oy,oz]){
+    translate([farthest*(3*dt)+closest*(4*dt),oy,oz]){
         rib_internal(5,[100,10,7],[0,-50,2]);
     }
-    translate([farthest*(dt)+closest*(5*dt),oy,oz]){
+    translate([farthest*(2*dt)+closest*(3*dt),oy,oz]){
+        rib_nacelle(
+            7,
+            [100,10,6],[0,-50,2],
+            motor_length+motor_diameter,motor_diameter+clearance,
+            [0,2,0],
+            side,8,
+            -5,0
+        );
+    }
+    translate([farthest*(1*dt)+closest*(5*dt),oy,oz]){
         rib_internal(5,[100,10,7],[0,-50,2]);
     }
 }
@@ -162,9 +172,9 @@ module render(){
         ribs(-1);
     }
     color("blue"){
-        closest = fuselage_width/2;
+        closest = fuselage_width*15/8;
         farthest = wing_length+closest;
-        dt = 1/6;
+        dt = 1/8;
         translate([farthest*4.5*dt+closest*1.5*dt+0.25,25,-2.5]){
             aileron(
                 (farthest*6*dt+closest*0*dt)-(farthest*3*dt+closest*3*dt)-6.5-4*clearance,wing_chord,
@@ -197,5 +207,4 @@ module render(){
         }
     }*/
 }
-//render();
-wheel(10,30,subspar_diameter+1.5*clearance,0.25);
+render();
