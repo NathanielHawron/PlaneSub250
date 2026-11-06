@@ -26,18 +26,20 @@ foils = [
     # "NACA5415",
 ]
 colors = [
-    # "black",
-    # "brown",
-    # "pink",
+    "black",
+    "brown",
+    "maroon",
     "red",
+    "pink",
     "orange",
-    # "yellow",
-    # "lime",
+    "yellow",
+    "lime",
     "green",
-    # "cyan",
+    "cyan",
     "blue",
     "indigo",
-    "violet"
+    "violet",
+    "magenta"
 ]
 dataList = []
 
